@@ -30,12 +30,13 @@ public class ClientV1 {
                 ChannelPipeline pipeline = ch.pipeline();
                 pipeline.addLast(new OrderFrameDecoder());
                 pipeline.addLast(new OrderFrameEncoder());
+                pipeline.addLast(new LoggingHandler(LogLevel.INFO));
                 pipeline.addLast(new OrderProtocolEncoder());
                 pipeline.addLast(new OrderProtocolDecoder());
 
                 pipeline.addLast(new OperationToRequestMessageEncoder());
 
-                pipeline.addLast(new LoggingHandler(LogLevel.INFO));
+                //pipeline.addLast(new LoggingHandler(LogLevel.INFO));
             }
         });
 
